@@ -1,5 +1,10 @@
 . "$HOME/.cargo/env"
 
+# Add a line like 
+# 'source ~/code/personal/dotfiles/zsh/.zshenv'
+# to the ~/.zshenv of the computer its on. This way you get the nice common config here with the ability to customize
+# the current computer
+
 alias todo='nvim ~/todo.md'
 alias vi='nvim'
 alias vim='nvim'
@@ -36,7 +41,6 @@ dockSsh() {
 # install to mac with brew install tree (default on linux)
 alias treeTop='tree -d -L 1 --gitignore'
 alias directorySizeCheck='du -hs * | gsort -h'
-alias vlc='open  -a "`ls -dt /Applications/VLC*`"'
 
 alias re-source='source ~/.zshenv'
 alias edit-source='nvim ~/.zshenv'

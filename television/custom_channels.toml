@@ -1,0 +1,37 @@
+# Just
+[[cable_channel]]
+name = "just"
+source_command = "just --summary | tr ' ' '\n'"
+preview_command = "just --show {}"
+
+# npm
+[[cable_channel]]
+name = "npm-run"
+source_command = "jq -r '.scripts | keys[]' package.json"
+preview_command = "jq -r '.scripts[\"{}\"]' package.json"
+
+# npm test
+[[cable_channel]]
+name = "npm-test"
+source_command = "fd --glob '*.test.ts'"
+preview_command = "bat -n --color=always {0}"
+
+# python test
+[[cable_channel]]
+name = "py-test"
+source_command = "fd --glob '**test*.py'"
+preview_command = "bat -n --color=always {0}"
+
+
+# Docker
+[[cable_channel]]
+name = "docker-images"
+source_command = "docker image list --format \"{{.ID}}\""
+preview_command = "docker image inspect {0} | jq -C"
+
+[[cable_channel]]
+name = "docker-logs"
+source_command = "docker ps --format \"{{.Names}}\""
+preview_command = "docker ps --filter name={0}"
+
+
