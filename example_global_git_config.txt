@@ -1,0 +1,22 @@
+[user]
+	name = puɐɹᴉɯɐƆ uɐpɹoſ
+	email = <some_email>.com
+[core]
+	excludesfile = /Users/jordan/.gitignore_global
+	autocrlf = input
+	editor = nvim
+	ignorecase = false
+[commit]
+	template = /Users/jordan/.stCommitMsg
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[alias]
+	unstage = reset
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+

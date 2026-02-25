@@ -16,47 +16,17 @@ config.use_dead_keys = false
 config.tab_max_width = 40
 config.font_size = 16.0
 config.font = wezterm.font("JetBrains Mono")
+config.window_decorations = "RESIZE"
 
-wezterm.on("update-right-status", function(window, pane)
-	window:set_right_status(window:active_workspace())
-end)
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 10,
+	bottom = 0,
+}
 
 config.keys = {
 	-- Prompt for a name to use for a new workspace and switch to it.
-	{
-		key = "w",
-		mods = "CTRL|SHIFT",
-		action = act.PromptInputLine({
-			description = wezterm.format({
-				{ Attribute = { Intensity = "Bold" } },
-				{ Foreground = { AnsiColor = "Fuchsia" } },
-				{ Text = "Enter name for new workspace" },
-			}),
-			action = wezterm.action_callback(function(window, pane, line)
-				-- line will be `nil` if they hit escape without entering anything
-				-- An empty string if they just hit enter
-				-- Or the actual line of text they wrote
-				if line then
-					window:perform_action(
-						act.SwitchToWorkspace({
-							name = line,
-						}),
-						pane
-					)
-				end
-			end),
-		}),
-	},
-}
-
-wezterm.on("update-right-status", function(window, pane)
-	window:set_right_status(window:active_workspace())
-end)
-
-config.keys = {
-	-- Switch to the default workspace
-
-	-- Show the launcher in fuzzy selection mode and have it list all workspaces
 	-- and allow activating one.
 	{
 		key = "w",
@@ -65,7 +35,31 @@ config.keys = {
 			flags = "FUZZY|WORKSPACES",
 		}),
 	},
+	-- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
+	{
+		key = "LeftArrow",
+		mods = "OPT",
+		action = act.SendKey({
+			key = "b",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "RightArrow",
+		mods = "OPT",
+		action = act.SendKey({ key = "f", mods = "ALT" }),
+	},
+	-- Explicitly reload the configuration.
+	{
+		key = "r",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ReloadConfiguration,
+	},
 }
+
+wezterm.on("update-right-status", function(window, pane)
+	window:set_right_status(window:active_workspace())
+end)
 
 -- and finally, return the configuration to wezterm
 return config

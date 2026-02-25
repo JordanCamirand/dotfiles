@@ -1,0 +1,13 @@
+macos-window-buttons = hidden
+
+gtk-tabs-location = hidden
+window-padding-x = 0
+window-padding-y = 0
+
+title = " "
+macos-titlebar-proxy-icon = hidden
+font-family = "JetBrains Mono"
+font-size = 16
+theme = ayu
+
+unfocused-split-opacity = 0.9
