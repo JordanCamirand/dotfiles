@@ -2,4 +2,3 @@
 .DS_Store
 .nvimrc
 **/jordan-scripts/*
-.claude/settings.local.json
